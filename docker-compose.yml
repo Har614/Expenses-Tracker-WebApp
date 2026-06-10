@@ -2,15 +2,13 @@ version: "3.8"
 
 services:
   mainapp:
-    # 1. Pulls dynamically from your personal AWS ECR repository
-    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/expense-tracker-app:latest
+    # Hardcoded with your explicit AWS ECR address details
+    image: 290893516657.dkr.ecr.us-east-1.amazonaws.com/expense-tracker-app:latest
     container_name: Expensetracker
     environment:
-      # 2. Inherits secure connection details from AWS Elastic Beanstalk settings
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
     ports:
-      # 3. Maps Web Traffic Port 80 to Spring Boot's internal port 8080
       - "80:8080"
     restart: always
