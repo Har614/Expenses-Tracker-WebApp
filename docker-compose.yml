@@ -1,14 +1,11 @@
-version: "3.8"
-
 services:
   mainapp:
-    # Hardcoded with your explicit AWS ECR address details
     image: 290893516657.dkr.ecr.us-east-1.amazonaws.com/expense-tracker-app:latest
     container_name: Expensetracker
     environment:
-      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
-      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
-      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      - SPRING_DATASOURCE_URL=jdbc:mysql://expense-tracker-db.cix22428c6en.us-east-1.rds.amazonaws.com:3306/expenses_tracker?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=ilovelambo007
     ports:
       - "80:8080"
     restart: always
